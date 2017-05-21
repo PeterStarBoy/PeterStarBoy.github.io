@@ -165,4 +165,20 @@ class Peter
 		$result = send_post($url, self::json_encode($data));
 
 	}
+
+	/**
+	* TODO: generate random strings
+	* @param $length int string length
+	* @return $str string 
+	*/
+	public static function getRandomString($length = 32) 
+	{
+		$chars = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIHKLMNOPQRSTUVXYZ";
+		$str = '';
+		for($i = 0; $i < $length; $i++) 
+		{
+			$str .= substr($chars, rand(0, strlen($chars) - 1), 1);
+		}
+		return $str;
+	}
 }
