@@ -91,6 +91,25 @@
 			echo "id does't exist, please check and try again.";
 		}
 		-------------------------SIMPLE SPLIT END---------------------------------
+		----------------------IT'S SIMPLE TABLE SPLIT, LET'S SEE SOME COMPLEX OCCASION----------------
+		it happens to multipul login data type, such as ID, EMAIL, PHONE_NUMBER and so on.
+		in this case, we need to convert nultipul data to decimal, then %T_NUM to make up tablename.
+		e.g. let's take email address as login data, we'll handle it like this:
+		a. convert email to decimal via certain function (we assume the result is dec)
+		b. put the result %T_NUM to make up the table name needed, such as EMAIL . dec%T_NUM.
+		---------show emial table's construction--------------
+		fields: id,  password,  email
+		email and password for verification, id is for fetching the whole information in id table.
+		------------------VERTICAL SPLIT------------------------------------------------------
+		table examples:
+		table one:
+		name: score | fields id, stu_id, question_id, answer, score
+		name: student | fields stu_id, name, age, sex, class (connection: stu_id)
+		name: question | fields question_id, content (connection: question_id)
+		THERE IS A PROBLEM: THE MAIN TABLE SCORE'S COLUMN answer IS TOO BIG AND IT'S LESS USED, WE NEED TO SPLIT IT OUT(VERTICAL SPLIT)
+		SO WE CREATE A NEW TABLE NAMED answer AND INERT ALL THE answer content TO IT, USE A ID FIELD TO CONNECT BOTH
+		AS THE OTHER TABLES.
+		
 		
 
 
