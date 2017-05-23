@@ -109,7 +109,28 @@
 		THERE IS A PROBLEM: THE MAIN TABLE SCORE'S COLUMN answer IS TOO BIG AND IT'S LESS USED, WE NEED TO SPLIT IT OUT(VERTICAL SPLIT)
 		SO WE CREATE A NEW TABLE NAMED answer AND INERT ALL THE answer content TO IT, USE A ID FIELD TO CONNECT BOTH
 		AS THE OTHER TABLES.
-		
+		-------------------------MYSQL MAINTENANCE-------------------------------------------
+		1. finish tasks on time
+		TASKS: 
+		a. backups newsdb every hour under windows operation system
+		b. backups table testdb.dept at 2:00 AM everyday under windows operation system
+		STEPS:
+		(1). use mysqldump command backup table data manually.
+			a. go to mysql/bin directory
+			b. input command: mysqldump.exe -u username -p password databasename tablename > target directory/backup filename(.bak)
+		2. use php code to backup data
+		steps: planned tasks -->  mytask.bat --> mytask.php --> backup files and mysql operation.
+		----bat code (mytask.bat) -----
+		phpdirectory\php.exe target php file directory\mytask.php
+		----php code (mytask.php)----
+		******this is backup function, you can also send email, upload and download***********
+		data_default_timezone_set('PRC');
+		$filename = date("YmdHis", time()) . ".bak";
+		$command = "C:\mysqlroot\bin\msyqldump -u username -p password databasename tablename > target backup directory/{$filename}";
+		exec($command);
+		-------command under linux--------
+		crontab -c
+		* * * * * data >> /home/mydata.bak
 		
 
 
