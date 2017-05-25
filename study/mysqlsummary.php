@@ -16,6 +16,23 @@
 			  normally we create a primary key to meet this
 ----------3NF indecates fields de not exist implicit or explicit duction----------------------
 			  so it needs another table to store this field and relate them with a id, etc..
+-----------3. SQL sentence optimization(slow query location: explain)-----------
+			slow query location steps(test before the program put online)
+			(1). start mysql service at safe mode
+			command sentence: mysql dir\bin\mysqld.exe --safe-mode --slow-query-log
+			under mysql client: set long_query_time = 1;
+			then test the target sql sentence, the slow query will be added to slow query log.
+			******log content analysis(important)*******
+			example:
+			Time:141122 10:39:45   #show the slow query detected time
+			User@Host: root[root] @ localhost[127.0.0.1]   #show user's ID and IP
+			Query_time: 1.625093 Lock_time:0.001000 Rows_sent: 0 Rows_examined: 8000000
+			(Query_time: if it's too big means complex sql query request and need to be optimized(index))
+			(Lock_time: if it's too big means too many visits and need using read & write split to reduce pressure)
+			use testdb;	#show database name
+			SET timestamp = 1416623985;
+			select * from emp where ename = 'IUYTOPUYQEW';	#show sql query sentence
+
 
 /**
 * Hint: this is my personal mysql summary
