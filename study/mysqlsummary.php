@@ -1,4 +1,22 @@
 <?php
+/*
+----------------MYSQL OPTIMIZATION INDEX---------------------------
+---------1. design the table accroding to 3NF(normal format)-------------------
+---------2. create proper index(primary key|unique|index|full text)------------
+---------3. SQL sentence optimization(slow query location: explain)------------
+---------4. table split(horizontal or vertical) and district split-------------
+---------5. read and write seperation------------------------------------------
+---------6. create proper procedure, function or triggers----------------------
+---------7. my.ini configuration optimization----------------------------------
+---------8. hardware and software upgrading------------------------------------
+----------------------------------------------------------------------------------------------------
+-----------1.design the table according to 3NF---------------
+----------1NF indicates the table's attributes(fields) are atomic, can not be split-----------
+----------2NF indicates there can not be the same row in the table(same data row)-------------
+			  normally we create a primary key to meet this
+----------3NF indecates fields de not exist implicit or explicit duction----------------------
+			  so it needs another table to store this field and relate them with a id, etc..
+
 /**
 * Hint: this is my personal mysql summary
 * Content: how to stimulate mysql from all kinds of aspects
