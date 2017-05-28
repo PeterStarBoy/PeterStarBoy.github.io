@@ -1,4 +1,11 @@
 <?php
+/**
+* Hint: this is my personal mysql summary
+* Content: how to stimulate mysql from all kinds of aspects
+* Author: Peter
+* Date: 2017/5/22
+* Menu started here:
+*/
 /*
 ----------------MYSQL OPTIMIZATION INDEX---------------------------
 ---------1. design the table accroding to 3NF(normal format)-------------------
@@ -9,13 +16,31 @@
 ---------6. create proper procedure, function or triggers----------------------
 ---------7. my.ini configuration optimization----------------------------------
 ---------8. hardware and software upgrading------------------------------------
-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
 -----------1.design the table according to 3NF---------------
 ----------1NF indicates the table's attributes(fields) are atomic, can not be split-----------
 ----------2NF indicates there can not be the same row in the table(same data row)-------------
 			  normally we create a primary key to meet this
 ----------3NF indecates fields de not exist implicit or explicit duction----------------------
 			  so it needs another table to store this field and relate them with a id, etc..
+-----------2. create proper index(primary key|unique|index|fulltest)------------
+----------------------INDEX TYPES------------------------------
+			index usually create with the fields where laid after "where" sentence;
+			(1). primary key --> the most effective index, noramlly create with logic TD field
+				unique and not null
+			(2). unique ---> the second effective index, the fields' value can set null.
+			(3). index ---> the third effective index, can duplicate and set null.
+------------------ADD INDEX AND MODIFY INDEX-------------------------------
+			(1). ADD INDEX
+			a. when create a table, set right behind the target field
+			e.g.
+			create table example (id int primary key auto_increment);
+			this command can also wrote in the end of the creating sentence.
+			b. when a table exists, you can also add indexes on it.
+			alter table TABLENAME add primary key|unique|index FIELDNAME;
+			(2). DELETE INDEX
+			alter table TABLENAME drop primary key; (primary key style)
+			alter table TABLENAME drop index FIELDNAME; (unique|index style)
 -----------3. SQL sentence optimization(slow query location: explain)-----------
 			slow query location steps(test before the program put online)
 			(1). start mysql service at safe mode
@@ -32,15 +57,15 @@
 			use testdb;	#show database name
 			SET timestamp = 1416623985;
 			select * from emp where ename = 'IUYTOPUYQEW';	#show sql query sentence
-
-
-/**
-* Hint: this is my personal mysql summary
-* Content: how to stimulate mysql from all kinds of aspects
-* Author: Peter
-* Date: 2017/5/22
-* Menu started here:
-*/
+			*************explain content(useful attributes) show***************************
+			select-type: simple (stands for serach type)
+			table: emp (stands for target table)
+			type: all (stands for whole table scan)
+			possible_keys: NULL (show available index for current sql sentence)
+			key: NULL (show actual used index)
+			rows: 8000000 (estimated or scanned rows)
+			Extra: Using where (stands for if has extra tasks)
+//---------4. table split(horizontal or vertical) and district split-------------
 //PART 6: Table split and District split
 //USAGE: when a table is too big and index can not solve it
 //Chapter 1: horizantial split
