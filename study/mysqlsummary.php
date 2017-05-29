@@ -41,6 +41,19 @@
 			(2). DELETE INDEX
 			alter table TABLENAME drop primary key; (primary key style)
 			alter table TABLENAME drop index FIELDNAME; (unique|index style)
+****************HOW TO USE INDEXED CORRECTLY****************
+			(1). as for multipul indexes, index will be used when the where sentence contain indexes'very left field.
+			(2). as for search sentence like "where FIELD like 'xxx'", when the 'xxx' written like this, such as '%xxx' or '_xxx', indexes invalid. it only valid when the field
+			start with 'xxx', not % or _.
+			(3). if search condition contain 'OR', then every field selected as search condition must has index on it, otherwise index invalid.
+			(4). if target FIELDS' TYPE is string, the saerch word need to be wrapped with quotes, otherwise index invalid.
+			(5). if mysql service estimate the whole table scan is faster then index scan, the index will not be used.
+			(6). optimize group by sentence, group by sentence will order the result by default, if the target result doesn't need to be sorted, we can add 'order by null' to the end of the group by sentence.
+			(7). when there is a child-search, we can use join related_table instead, cos there is no need to create temparate table using join sentence.
+			(8). show indexes using status:
+			command: show status like "Hanlder_read%";
+			in the variables list, healthy indexes show follow info:
+			var handler_read_key with a high value and var handler_read_md_next with a low value.
 -----------3. SQL sentence optimization(slow query location: explain)-----------
 			slow query location steps(test before the program put online)
 			(1). start mysql service at safe mode
