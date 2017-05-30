@@ -54,6 +54,24 @@
 			command: show status like "Hanlder_read%";
 			in the variables list, healthy indexes show follow info:
 			var handler_read_key with a high value and var handler_read_md_next with a low value.
+			(9). when lots of data inserting occurs:
+			for engine myisam we should do:
+			a. alter table TABLENAME disable keys;
+			b. loading data/insert sentence;
+			c.alter table TABLENAME enable keys;
+			for engine innodb we should do:
+			a. sort the importing data by primary key;
+			b. set unique_checks = 0;(close unique check)
+			c. set autocommit = 0; (close autocommit+)
+			(10). select proper storage engine:
+			MYISAM: can handle plenty of query and inserting.
+			table type: such as forum feedback, news, goods, info, etc.
+			INNODB: support commit and rollback, it's safer.
+			table type: account, points, etc.
+			MEMORY/HEAP: change rapidly and no need to be sotred, such as user online status.
+			(11). decimal type is more pricise than float type
+			(12). if the table's storage engine is MYISAM, it needs to be optimized on time.
+			command: optimize table TABLENAME;
 -----------3. SQL sentence optimization(slow query location: explain)-----------
 			slow query location steps(test before the program put online)
 			(1). start mysql service at safe mode
@@ -204,6 +222,8 @@
 		-------command under linux--------
 		crontab -c
 		* * * * * data >> /home/mydata.bak
+---------------------------------EXTRA TIPS----------------------------------
+
 		
 
 
