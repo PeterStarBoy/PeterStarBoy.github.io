@@ -7,6 +7,7 @@
 * Menu started here:
 */
 /*
+!!!!!!!!!!this is the test line!!!!!!!!!!!!!!!!!
 ----------------MYSQL OPTIMIZATION INDEX---------------------------
 ---------1. design the table accroding to 3NF(normal format)-------------------
 ---------2. create proper index(primary key|unique|index|full text)------------
