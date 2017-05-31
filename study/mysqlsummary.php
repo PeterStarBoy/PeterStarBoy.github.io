@@ -224,6 +224,15 @@
 		crontab -c
 		* * * * * data >> /home/mydata.bak
 ---------------------------------EXTRA TIPS----------------------------------
+		*****TIME ISSUE 2038*************
+		SOLUTION:
+		(1). convert timestamp to data
+		$d = new DateTime('@INT');
+		$d -> setTimezone(new DateTimeZone('PRC'));
+		echo $d -> format('Y-m-d H:i:s');
+		(2). convert date to timestamp
+		$d = new DateTime('DATE');
+		echo $d -> format('U');
 
 		
 
