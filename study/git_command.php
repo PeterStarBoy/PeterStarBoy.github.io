@@ -18,3 +18,20 @@
 	(4). COMMAND FOR GIT VIM EDITOR
 	A. get out from it, shift+;, then q! or qw!
 	B. same commands as linux
+
+	-------------------ADD NEW SSH KEY AND REPOSITORY---------------
+	(1). PREPARATION: NEW GITHUB REPOSITORY, GENERATE A NEW SSH KEY.
+	(2). DEPLOY THE SSH KEY TO THE NEW REPOSITORY.
+	(3). SET THE ~/.ssh/config FILE, ADD A NEW HOST INFO GROUP.
+	(4). INIT THE GIT BASH IN THE TARGET DIRECTORY AND RUN IT.
+	(5). TYPE COMMAND AS FOLLOWING IN THE GIT BASH WINDOW.
+	a. ssh-agent bash
+	b. eval 'ssh-agent -s'
+	c. ssh-add ~/.ssh/NEW_RSA_KEY_NAME
+	d. ssh -T NEWHOSTNAME
+	IF THE GIT FEEDBACK IT'S LIKE (Hi PeterStarBoy/Work_collection! You've successfully authenticated, but GitHub does not provide shell access.). IT WORKS.
+	(6). SET THE GIT REMOTE ADDRESS BY USING COMMAND: 
+	   git remote add NAME GIT_ADDRESS(the prefix is your new host name)
+	(7). REBASE THE REPOSITORY:
+	   git pull --rebase NAME master
+	(8). WORK AS NORMAL.
